@@ -36,5 +36,12 @@ namespace PlanesRecetas.infraestructure.Metrics
         {
             return null;
         }
+
+        public async Task<Unidad?> GetUnidad(int id)
+        {
+            return await _dbContext.Unidad
+                .AsNoTracking()                
+                .SingleOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

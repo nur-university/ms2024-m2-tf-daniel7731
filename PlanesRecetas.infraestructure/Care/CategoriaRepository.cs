@@ -37,9 +37,9 @@ namespace PlanesRecetas.infraestructure.Care
             return _dbContext.Categoria.ToList();
         }
 
-        public Task<Categoria?> GetByIdAsync(Guid id, bool readOnly = false)
+        public async Task<Categoria?> GetByIdAsync(Guid id, bool readOnly = false)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Categoria.SingleAsync(x => x.Id == id);
         }
 
         public Task<Categoria?> GetByNombreAsync(string nombre)

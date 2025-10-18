@@ -18,6 +18,7 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel.Config
 
             builder.Property(x => x.Nombre).HasMaxLength(100).IsRequired();
             builder.Property(x => x.Calorias).HasColumnType("decimal(10,2)").IsRequired();
+            builder.Property(x => x.CantidadValor).HasColumnType("decimal(10,2)").IsRequired();
 
             builder.HasOne(x => x.Categoria)
                        .WithMany()
@@ -29,8 +30,7 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel.Config
                        .HasForeignKey(x => x.Unidad.Id)
                        .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasIndex(x => x.Categoria.Id);
-            builder.HasIndex(x => x.Unidad.Id);
+          
         }
     }
 }

@@ -27,6 +27,7 @@ builder.Services.AddScoped<INutricionistaRepository, NutricionistaRepository>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<ITipoAlimentoRepository,TipoAlimentoRepository>();
 builder.Services.AddScoped<IUnidadRepository, UnidadRepository>();
+builder.Services.AddScoped<IIngredienteRepository, IngredienteRepository>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();

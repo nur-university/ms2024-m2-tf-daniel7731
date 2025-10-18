@@ -191,3 +191,6 @@ VALUES
 (NEWID(), 'Cereal', 7),
 (NEWID(), 'Papa', 7),
 (NEWID(), 'Yuca', 7);
+
+ALTER TABLE Ingrediente
+ADD CantidadValor decimal not null default 1;

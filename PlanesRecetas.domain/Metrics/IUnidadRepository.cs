@@ -12,5 +12,6 @@ namespace PlanesRecetas.domain.Metrics
     {
    
         List<Unidad> GetAll();
+        Task<Unidad?> GetUnidad(int id);
     }
 }

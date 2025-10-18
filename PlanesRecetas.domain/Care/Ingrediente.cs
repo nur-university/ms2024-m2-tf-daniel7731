@@ -11,16 +11,33 @@ namespace PlanesRecetas.domain.Care
     {
         public Decimal Calorias { get; set; }
         public String Nombre { get; set; }  
-        public Categoria Categoria { get; set; }    
+        public Categoria Categoria { get; set; }   
+        
+        public Guid CategoriaId { get; set; }
+        public int UnidadId { get; set; }
 
         public Decimal CantidadValor { get; set; }
         public Unidad Unidad { get; set; }
-        public Ingrediente(Guid id, decimal calorias, string nombre, Categoria categoria, Unidad unidad):base(id)
+        public Ingrediente(Guid id, decimal calorias, string nombre, Categoria categoria, decimal cantidadValor, Unidad unidad) : base(id)
         {
             Calorias = calorias;
             Nombre = nombre;
             Categoria = categoria;
+            CantidadValor = cantidadValor;
             Unidad = unidad;
+        }
+
+        public Ingrediente()
+        {
+          
+        }
+        public Ingrediente(Guid id, decimal calorias, string nombre, Guid categoriaId, decimal cantidadValor, int unidadId) : base(id)
+        {
+            Calorias = calorias;
+            Nombre = nombre;
+            CategoriaId = categoriaId;
+            CantidadValor = cantidadValor;
+            UnidadId = unidadId;
         }
     }
 }
