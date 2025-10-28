@@ -11,13 +11,19 @@ namespace PlanesRecetas.domain.Care
     {
         public Decimal Calorias { get; set; }
         public String Nombre { get; set; }  
-        public Categoria Categoria { get; set; }   
-        
-        public Guid CategoriaId { get; set; }
-        public int UnidadId { get; set; }
-
+        public Categoria? Categoria { get; set; }    
+        public Guid CategoriaId {
+            get; set;
+        }
+        public int UnidadId { 
+            get; set;
+        }
         public Decimal CantidadValor { get; set; }
-        public Unidad Unidad { get; set; }
+        public Unidad? Unidad { get; set; }
+        public Ingrediente()
+        {
+
+        }
         public Ingrediente(Guid id, decimal calorias, string nombre, Categoria categoria, decimal cantidadValor, Unidad unidad) : base(id)
         {
             Calorias = calorias;
@@ -27,16 +33,15 @@ namespace PlanesRecetas.domain.Care
             Unidad = unidad;
         }
 
-        public Ingrediente()
-        {
-          
-        }
+        
         public Ingrediente(Guid id, decimal calorias, string nombre, Guid categoriaId, decimal cantidadValor, int unidadId) : base(id)
         {
             Calorias = calorias;
             Nombre = nombre;
-            CategoriaId = categoriaId;
+            Categoria = new Categoria(categoriaId, "", 0);
             CantidadValor = cantidadValor;
+            Unidad = new Unidad(unidadId, "","");  
+            CategoriaId = categoriaId;
             UnidadId = unidadId;
         }
     }

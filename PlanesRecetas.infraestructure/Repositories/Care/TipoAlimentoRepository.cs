@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanesRecetas.infraestructure.Care
+namespace PlanesRecetas.infraestructure.Repositories.Care
 {
     public class TipoAlimentoRepository : ITipoAlimentoRepository
     {
@@ -29,7 +29,8 @@ namespace PlanesRecetas.infraestructure.Care
 
         public async Task<TipoAlimento?> GetByIdAsync(int id)
         {
-            return await _dbContext.TipoAlimento.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var single= await _dbContext.TipoAlimento.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return single;
         }
 
         public List<TipoAlimento> GetAll()

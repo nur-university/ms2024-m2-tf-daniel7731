@@ -11,18 +11,22 @@ namespace PlanesRecetas.domain.Care
     {
         public String Nombre { get; set; }
         public TipoAlimento Tipo { get; set; }
-        public int TipoAlimentoId { get; private set; }   // scalar FK column
+        public int TipoAlimentoId {
+            get; set;
+        }   // scalar FK column
         public Categoria(Guid id, String nombre, TipoAlimento tipo) : base(id)
         {
             Nombre = nombre;
             Tipo = tipo;
         }
         private Categoria() { }
-        public Categoria(Guid id, string nombre, int tipoAlimentoId)
+        public Categoria(Guid id, string nombre, int tipoAlimentoId):base(id)
         {
-            Id = id;
+       
             Nombre = nombre;
+            Tipo = new TipoAlimento(tipoAlimentoId,"");
             TipoAlimentoId = tipoAlimentoId;
+           
         }
     }
 }

@@ -12,5 +12,14 @@ namespace PlanesRecetas.application.Medicos
     {
        
         public string Nombre { get; set; }
+        public bool Activo { get; set; }
+
+        public DateTime FechaCreacion { get; set; }
+        public CreateNutricionistaComand(string nombre, bool activo, DateTime fechaCreacion)
+        {
+            Nombre = nombre;
+            Activo = activo;
+            FechaCreacion = fechaCreacion;
+        }
     }
 }

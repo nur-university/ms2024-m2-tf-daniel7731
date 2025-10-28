@@ -12,6 +12,13 @@ namespace PlanesRecetas.domain.Care
         public String Nombre { get; set; }
         public List<Ingrediente> Ingredientes { get; set; }
         public Tiempo Tiempo { get; set; }
+        public int TiempoId
+        {
+            get
+            {
+                return Tiempo.Id;
+            }
+        }
         public Receta(Guid id, String nombre, List<Ingrediente> ingredientes, Tiempo tiempo):base(id)
         {
             Nombre = nombre;

@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace PlanesRecetas.application.Care
 {
-    public sealed record GetTipoAlimentoByIdQuery(int Id) : IRequest<Result<TipoAlimento>>;
+    public sealed record GetTipoAlimentoByIdQuery(int Id) : IRequest<Result<TipoAlimentoDto>>;
 }

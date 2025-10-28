@@ -16,6 +16,20 @@ namespace PlanesRecetas.domain.Care
         public DateTime FechaInicio { get; private set; }
         public DateTime FechaFin { get; private set; }
 
+        public Guid PacienteId
+        {
+            get
+            {
+                return Paciente.Id;
+            }
+        }
+        public Guid NutricionistaId
+        {
+            get
+            {
+                return Nutricionista.Id;
+            }
+        }
         public int DuracionDias
         {
             get

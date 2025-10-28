@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace PlanesRecetas.application.Medicos
 {
-    public record GetAllNutricionistasQuery() : IRequest<Result<List<Nutricionista>>>;
+    public record GetAllNutricionistasQuery() : IRequest<Result<List<NutricionistaDto>>>;
 }

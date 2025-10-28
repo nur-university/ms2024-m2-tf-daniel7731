@@ -19,6 +19,9 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel.Config
             builder.Property(x => x.Nombre)
                    .HasMaxLength(100)
                    .IsRequired();
+            builder.Property(x => x.Activo)
+                   .IsRequired();
+            builder.Property(x => x.FechaCreacion);
         }
     }
 }

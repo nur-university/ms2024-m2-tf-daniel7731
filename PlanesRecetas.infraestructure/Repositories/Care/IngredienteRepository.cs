@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanesRecetas.infraestructure.Care
+namespace PlanesRecetas.infraestructure.Repositories.Care
 {
     public class IngredienteRepository : IIngredienteRepository
     {
@@ -45,10 +45,13 @@ namespace PlanesRecetas.infraestructure.Care
             return Task.FromResult(_dbContext.Ingrediente.FirstOrDefault(i => i.Nombre == nombre));
         }
 
+       
+
         public Task UpdateAsync(Ingrediente ingrediente)
         {
             _dbContext.Ingrediente.Update(ingrediente); 
             return Task.CompletedTask;
         }
+        
     }
 }

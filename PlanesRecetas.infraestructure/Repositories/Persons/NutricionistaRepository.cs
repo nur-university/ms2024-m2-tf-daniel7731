@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanesRecetas.infraestructure.Persons
+namespace PlanesRecetas.infraestructure.Repositories.Persons
 {
     public class NutricionistaRepository : INutricionistaRepository
     {
@@ -38,7 +38,10 @@ namespace PlanesRecetas.infraestructure.Persons
 
         public async Task<Nutricionista?> GetByIdAsync(Guid id, bool readOnly = false)
         {
-            return await _dbContext.Nutricionista.FirstAsync(x => x.Id == id);
+            var single = await _dbContext.Nutricionista.FirstOrDefaultAsync(x => x.Id == id);
+            
+
+            return single;
         }
 
         public Task UpdateAyscn(Nutricionista nutricionista)

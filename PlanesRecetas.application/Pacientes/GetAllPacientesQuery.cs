@@ -11,6 +11,6 @@ namespace PlanesRecetas.application.Pacientes
 {
     namespace PlanesRecetas.application.Persons
     {
-        public record GetAllPacientesQuery() : IRequest<Result<List<Paciente>>>;
+        public record GetAllPacientesQuery() : IRequest<Result<List<PacienteDto>>>;
     }
 }

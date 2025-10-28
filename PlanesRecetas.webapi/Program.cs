@@ -7,11 +7,11 @@ using PlanesRecetas.application.Pacientes;
 using PlanesRecetas.domain.Care;
 using PlanesRecetas.domain.Metrics;
 using PlanesRecetas.domain.Persons;
-using PlanesRecetas.infraestructure.Care;
-using PlanesRecetas.infraestructure.Metrics;
 using PlanesRecetas.infraestructure.Persistence;
 using PlanesRecetas.infraestructure.Persistence.DomainModel;
-using PlanesRecetas.infraestructure.Persons;
+using PlanesRecetas.infraestructure.Repositories.Care;
+using PlanesRecetas.infraestructure.Repositories.Metrics;
+using PlanesRecetas.infraestructure.Repositories.Persons;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

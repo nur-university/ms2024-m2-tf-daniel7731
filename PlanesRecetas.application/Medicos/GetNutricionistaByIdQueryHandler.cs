@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Medicos
 {
     public class GetNutricionistaByIdQueryHandler
-       : IRequestHandler<GetNutricionistaByIdQuery, Result<Nutricionista>>
+       : IRequestHandler<GetNutricionistaByIdQuery, Result<NutricionistaDto>>
     {
         private readonly INutricionistaRepository _nutricionistaRepository;
 
@@ -19,14 +19,19 @@ namespace PlanesRecetas.application.Medicos
             _nutricionistaRepository = nutricionistaRepository;
         }
 
-        public async Task<Result<Nutricionista>> Handle(GetNutricionistaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Result<NutricionistaDto>> Handle(GetNutricionistaByIdQuery request, CancellationToken cancellationToken)
         {
             var nutricionista = await _nutricionistaRepository.GetByIdAsync(request.Id, request.ReadOnly);
-
             if (nutricionista is null)
-                return Result.Failure<Nutricionista>(Error.None);
-
-            return Result.Success(nutricionista);
+                return Result.Failure<NutricionistaDto>(Errors.NutricionistaNotFound);
+            var single = new NutricionistaDto
+            {
+                Id = nutricionista.Id,
+                Nombre = nutricionista.Nombre,
+                FechaCreacion = nutricionista.FechaCreacion,
+                Activo = nutricionista.Activo
+            };
+            return Result.Success(single);
         }
     }
 }

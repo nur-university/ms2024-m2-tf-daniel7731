@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Care
 {
     public sealed class GetTipoAlimentoByIdQueryHandler
-        : IRequestHandler<GetTipoAlimentoByIdQuery, Result<TipoAlimento>>
+        : IRequestHandler<GetTipoAlimentoByIdQuery, Result<TipoAlimentoDto>>
     {
         private readonly ITipoAlimentoRepository _repo;
 
@@ -19,13 +19,17 @@ namespace PlanesRecetas.application.Care
             _repo = repo;
         }
 
-        public async Task<Result<TipoAlimento>> Handle(GetTipoAlimentoByIdQuery request, CancellationToken ct)
+        public async Task<Result<TipoAlimentoDto>> Handle(GetTipoAlimentoByIdQuery request, CancellationToken ct)
         {
             var entity = await _repo.GetByIdAsync(request.Id);
             if (entity is null)
-                return Result.Failure<TipoAlimento>(Error.None);
-
-            return Result.Success(entity);
+                return Result.Failure<TipoAlimentoDto>(Errors.TipoAlimentoNotFound);
+            TipoAlimentoDto dto = new TipoAlimentoDto
+            {
+                    Id = entity.Id,
+                    Nombre =  entity.Nombre
+            };
+            return Result.Success(dto);
         }
     }
 }

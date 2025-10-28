@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanesRecetas.infraestructure.Care
+namespace PlanesRecetas.infraestructure.Repositories.Care
 {
     public class CategoriaRepository : ICategoriaRepository
     {

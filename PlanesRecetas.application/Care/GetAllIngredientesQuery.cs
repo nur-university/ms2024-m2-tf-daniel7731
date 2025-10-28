@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace PlanesRecetas.application.Care
 {
-    public sealed record GetAllIngredientesQuery() : IRequest<Result<List<Ingrediente>>>;
+    public sealed record GetAllIngredientesQuery() : IRequest<Result<List<IngredienteDto>>>;
 }

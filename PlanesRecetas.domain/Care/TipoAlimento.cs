@@ -12,7 +12,7 @@ namespace PlanesRecetas.domain.Care
         public int Id { get; private set; }
         public string Nombre { get; private set; }
 
-        private TipoAlimento() { }
-        public TipoAlimento(string nombre) => Nombre = nombre;
+        public TipoAlimento() { }
+        public TipoAlimento(int id ,string nombre) => Nombre = nombre;
     }
 }

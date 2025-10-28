@@ -1,5 +1,6 @@
 ﻿using Joseco.DDD.Core.Results;
 using MediatR;
+using PlanesRecetas.application.Medicos;
 using PlanesRecetas.domain.Persons;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Pacientes
 {
     public class GetPacienteByIdQueryHandler
-        : IRequestHandler<GetPacienteByIdQuery, Result<Paciente>>
+        : IRequestHandler<GetPacienteByIdQuery, Result<PacienteDto>>
     {
         private readonly IPacienteRepository _pacienteRepository;
 
@@ -19,14 +20,23 @@ namespace PlanesRecetas.application.Pacientes
             _pacienteRepository = pacienteRepository;
         }
 
-        public async Task<Result<Paciente>> Handle(GetPacienteByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PacienteDto>> Handle(GetPacienteByIdQuery request, CancellationToken cancellationToken)
         {
             var paciente = await _pacienteRepository.GetByIdAsync(request.Id, request.ReadOnly);
-
             if (paciente is null)
-                return Result.Failure<Paciente>(Error.Failure("",$"Paciente with ID '{request.Id}' was not found.",null));
+                return Result.Failure<PacienteDto>(Errors.PacientesNotFound);
+            PacienteDto dto = new PacienteDto
+            {
+                Id = paciente.Id,
+                Nombre = paciente.Nombre,
+                Apellido = paciente.Apellido,
+                FechaNacimiento = paciente.FechaNacimiento,
+                Peso = paciente.Peso,
+                Altura = paciente.Altura
+            };
 
-            return Result.Success(paciente);
+
+            return Result.Success(dto);
         }
     }
 }

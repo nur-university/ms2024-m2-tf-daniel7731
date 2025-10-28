@@ -10,6 +10,6 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Pacientes
 {
     public record GetPacienteByIdQuery(Guid Id, bool ReadOnly = false)
-        : IRequest<Result<Paciente>>;
+        : IRequest<Result<PacienteDto>>;
 
 }

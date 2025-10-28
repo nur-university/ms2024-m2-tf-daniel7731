@@ -10,5 +10,5 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Medicos
 {
     public record GetNutricionistaByIdQuery(Guid Id, bool ReadOnly = false)
-       : IRequest<Result<Nutricionista>>;
+       : IRequest<Result<NutricionistaDto>>;
 }

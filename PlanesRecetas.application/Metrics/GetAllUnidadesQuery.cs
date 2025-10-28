@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace PlanesRecetas.application.Metrics
 {
-    public sealed record GetAllUnidadesQuery() : IRequest<Result<List<Unidad>>>;
+    public sealed record GetAllUnidadesQuery() : IRequest<Result<List<UnidadDto>>>;
 }

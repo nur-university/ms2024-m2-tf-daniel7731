@@ -1,4 +1,4 @@
-﻿namespace PlanesRecetas.infraestructure.Persons
+﻿namespace PlanesRecetas.infraestructure.Repositories.Persons
 {
     using Microsoft.EntityFrameworkCore;
     using PlanesRecetas.domain.Persons;
@@ -46,7 +46,8 @@
 
         public async Task<Paciente?> GetByIdAsync(Guid id, bool readOnly = false)
         {
-            return await _dbContext.Paciente.FirstAsync(x=> x.Id == id);
+            var single = await _dbContext.Paciente.FirstOrDefaultAsync(x=> x.Id == id);
+            return single;
         }
 
         public Task UpdateAyscn(Paciente paciente)

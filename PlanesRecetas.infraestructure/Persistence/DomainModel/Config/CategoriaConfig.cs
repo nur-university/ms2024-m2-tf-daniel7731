@@ -18,12 +18,10 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel.Config
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nombre).HasMaxLength(100).IsRequired();
-
-            builder.HasOne(x => x.Tipo)
-               .WithMany()
-               .HasForeignKey(x => x.TipoAlimentoId)
-               .OnDelete(DeleteBehavior.Restrict);
-
+            builder.Property(i => i.TipoAlimentoId).HasColumnName("TipoAlimentoId");
+            builder.HasOne<TipoAlimento>("_tipo") // Use the backing field or property as a parameter
+            .WithMany()
+            .HasForeignKey(c => c.TipoAlimentoId);
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Metrics
 {
     public sealed class GetAllUnidadesQueryHandler
-        : IRequestHandler<GetAllUnidadesQuery, Result<List<Unidad>>>
+        : IRequestHandler<GetAllUnidadesQuery, Result<List<UnidadDto>>>
     {
         private readonly IUnidadRepository _unidadRepository;
 
@@ -19,14 +19,21 @@ namespace PlanesRecetas.application.Metrics
             _unidadRepository = unidadRepository;
         }
 
-        public Task<Result<List<Unidad>>> Handle(GetAllUnidadesQuery request, CancellationToken cancellationToken)
+        public Task<Result<List<UnidadDto>>> Handle(GetAllUnidadesQuery request, CancellationToken cancellationToken)
         {
             var unidades = _unidadRepository.GetAll();
 
             if (unidades == null || unidades.Count == 0)
-                return Task.FromResult(Result.Failure<List<Unidad>>(Error.None));
+                return Task.FromResult(Result.Failure<List<UnidadDto>>(Errors.UnidadesNotFound));
 
-            return Task.FromResult(Result.Success(unidades));
+            var list = unidades.Select(x => new UnidadDto
+            {
+                Id = x.Id,
+                Nombre = x.Nombre,
+                Simbolo = x.Simbolo
+            }).ToList();
+
+            return Task.FromResult(Result.Success(list));
         }
     }
 }

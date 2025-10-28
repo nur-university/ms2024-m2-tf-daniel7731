@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanesRecetas.infraestructure.Metrics
+namespace PlanesRecetas.infraestructure.Repositories.Metrics
 {
     public class UnidadRepository : IUnidadRepository
     {

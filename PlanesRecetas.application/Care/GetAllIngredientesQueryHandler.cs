@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PlanesRecetas.application.Care
 {
     public sealed class GetAllIngredientesQueryHandler
-       : IRequestHandler<GetAllIngredientesQuery, Result<List<Ingrediente>>>
+       : IRequestHandler<GetAllIngredientesQuery, Result<List<IngredienteDto>>>
     {
         private readonly IIngredienteRepository _ingredienteRepository;
 
@@ -19,14 +19,23 @@ namespace PlanesRecetas.application.Care
             _ingredienteRepository = ingredienteRepository;
         }
 
-        public Task<Result<List<Ingrediente>>> Handle(GetAllIngredientesQuery request, CancellationToken cancellationToken)
+        public Task<Result<List<IngredienteDto>>> Handle(GetAllIngredientesQuery request, CancellationToken cancellationToken)
         {
             var ingredientes = _ingredienteRepository.GetAll();
 
             if (ingredientes == null || ingredientes.Count == 0)
-                return Task.FromResult(Result.Failure<List<Ingrediente>>(Error.None));
+                return Task.FromResult(Result.Failure<List<IngredienteDto>>(Errors.IngredientesNotFound));
+            var list = ingredientes.Select(x => new IngredienteDto
+            {
+                Calorias = x.Calorias,
+                CategoriaId = x.CategoriaId,
+                Id = x.Id,
+                Nombre = x.Nombre,
+                UnidadId = x.UnidadId
 
-            return Task.FromResult(Result.Success(ingredientes));
+            }).ToList();
+
+            return Task.FromResult(Result.Success(list));
         }
     }
 }
