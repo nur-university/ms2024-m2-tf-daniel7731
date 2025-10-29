@@ -14,6 +14,7 @@ namespace PlanesRecetas.domain.Care
         Task UpdateAsync(Tiempo tiempo);
         Task DeleteAsync(int id);
         Task<bool> ExistsAsync(int id);
+        Task<Tiempo?> GetById(int id);
 
     }
 }

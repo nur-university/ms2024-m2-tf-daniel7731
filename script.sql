@@ -79,11 +79,10 @@ CREATE TABLE Receta (
 );
 
 CREATE TABLE RecetaIngrediente (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
     RecetaId UNIQUEIDENTIFIER NOT NULL,
     IngredienteId UNIQUEIDENTIFIER NOT NULL,
     CantidadValor DECIMAL(10,2) NULL,
-
-    CONSTRAINT PK_RecetaIngrediente PRIMARY KEY (RecetaId, IngredienteId),
     CONSTRAINT FK_RecetaIngrediente_Receta
         FOREIGN KEY (RecetaId) REFERENCES Receta(Id) ON DELETE CASCADE,
     CONSTRAINT FK_RecetaIngrediente_Ingrediente
@@ -96,13 +95,10 @@ CREATE TABLE Dieta (
 );
 
 CREATE TABLE DietaReceta (
+    ID INT IDENTITY(1,2) PRIMARY KEY,
     DietaId   UNIQUEIDENTIFIER NOT NULL,
     RecetaId  UNIQUEIDENTIFIER NOT NULL,
-
-    -- (Opcional) Orden o secuencia dentro de la dieta
     Orden INT NULL,
-
-    CONSTRAINT PK_DietaReceta PRIMARY KEY (DietaId, RecetaId),
     CONSTRAINT FK_DietaReceta_Dieta
         FOREIGN KEY (DietaId) REFERENCES Dieta(Id) ON DELETE CASCADE,
     CONSTRAINT FK_DietaReceta_Receta
@@ -116,10 +112,7 @@ CREATE TABLE PlanAlimentacion (
 
     FechaInicio DATE NOT NULL,
     FechaFin    DATE NOT NULL,
-
-  
     DuracionDias AS DATEDIFF(DAY, FechaInicio, FechaFin) PERSISTED,
-
     CONSTRAINT FK_PlanAlimentacion_Paciente
         FOREIGN KEY (PacienteId) REFERENCES Paciente(Id),
 
@@ -131,12 +124,11 @@ CREATE TABLE PlanAlimentacion (
 );
 
 CREATE TABLE PlanAlimentacionDieta (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
     PlanAlimentacionId UNIQUEIDENTIFIER NOT NULL,
     DietaId            UNIQUEIDENTIFIER NOT NULL, 
     Orden INT NULL,
     FechaProgramada DATE NULL,
-    CONSTRAINT PK_PlanAlimentacionDieta PRIMARY KEY (PlanAlimentacionId, DietaId),
-
     CONSTRAINT FK_PlanAlimentacionDieta_Plan
         FOREIGN KEY (PlanAlimentacionId) REFERENCES PlanAlimentacion(Id) ON DELETE CASCADE,
 

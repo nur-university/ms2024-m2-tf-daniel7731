@@ -20,9 +20,14 @@ namespace PlanesRecetas.domain.Care
         }
         public Decimal CantidadValor { get; set; }
         public Unidad? Unidad { get; set; }
+
+        public ICollection<Receta> Recetas { get; set; }
         public Ingrediente()
         {
 
+        }
+        public Ingrediente(Guid id):base(id)
+        {
         }
         public Ingrediente(Guid id, decimal calorias, string nombre, Categoria categoria, decimal cantidadValor, Unidad unidad) : base(id)
         {

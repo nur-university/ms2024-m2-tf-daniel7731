@@ -10,9 +10,8 @@ namespace PlanesRecetas.domain.Care
     public interface IRecetaRepository : IRepository<Receta>
     {
         List<Receta> GetAll();
-        Task<Receta?> GetByNombreAsync(string nombre);
         Task UpdateAsync(Receta receta);
-        Task DeleteAsync(Guid id);
-        Task<bool> ExistsAsync(Guid id);
+        Task DeleteAsync(Receta receta);
+        Task AddIngredientes(Receta receta, List<Ingrediente> ingredientes);
     }
 }

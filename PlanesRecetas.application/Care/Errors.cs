@@ -48,5 +48,10 @@ namespace PlanesRecetas.application.Care
             ErrorType.NotFound
         );
 
+        public static Error TiemposNotFound = new(
+            "Tiempos.NotFound",
+            "No tiempos were found in the system.",
+            ErrorType.NotFound
+        );
     }
 }

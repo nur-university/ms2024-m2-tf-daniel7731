@@ -12,7 +12,7 @@ namespace PlanesRecetas.application.Care
     {
         public Guid Id { get; set; }
         public string Nombre { get; set; }
-        public List<Guid> IngredientesIds { get; set; }
-        public Guid TiempoId { get; set; }
+        public List<ParamIngrediente> Ingredientes { get; set; }
+        public int TiempoId { get; set; }
     }
 }

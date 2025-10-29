@@ -45,7 +45,7 @@ namespace PlanesRecetas.application.Care
 
             // Create Ingrediente entity
             var ingrediente = new Ingrediente(request.Id, request.Calorias, request.Nombre,
-                request.CategoriaId, request.CantidadValor, request.UnidadId);
+            request.CategoriaId, request.CantidadValor, request.UnidadId);
             ingrediente.Unidad = null;
             ingrediente.Categoria = null;
  

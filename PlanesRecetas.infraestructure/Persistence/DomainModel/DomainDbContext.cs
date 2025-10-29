@@ -21,6 +21,8 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel
         public DbSet<TipoAlimento> TipoAlimento { get; set; }
         public DbSet<Unidad> Unidad { get; set; }
         public DbSet<Ingrediente> Ingrediente{ get; set; }
+        public DbSet<Receta> Receta { get; set; }
+        public DbSet<Tiempo> Tiempo { get; set; }
         public DomainDbContext(DbContextOptions<DomainDbContext> options) : base(options)
         {
         }
@@ -33,8 +35,10 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel
             modelBuilder.ApplyConfiguration(new PacienteConfig());
             modelBuilder.Ignore<DomainEvent>();
             base.OnModelCreating(modelBuilder);
-  
-     
-        }
+            modelBuilder.Entity<Receta>()
+                  .HasMany(e => e.Ingredientes)
+                  .WithMany(e => e.Recetas)
+                  .UsingEntity("RecetaIngrediente");
+        } 
     }
 }

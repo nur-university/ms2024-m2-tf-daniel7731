@@ -9,10 +9,10 @@ namespace PlanesRecetas.domain.Care
 {
     public class Tiempo : AggregateRoot
     {
-        public int Id { get; private set; }     // Identity
-        public string Nombre { get; private set; }
+        public int Id { get;  set; }     // Identity
+        public string Nombre { get;  set; }
 
-        private Tiempo() { }
+        public Tiempo() { }
         public Tiempo(int id, string nombre)
         {
             Id = id; Nombre = nombre;

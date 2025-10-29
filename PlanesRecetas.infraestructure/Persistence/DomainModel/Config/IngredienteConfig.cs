@@ -29,8 +29,9 @@ namespace PlanesRecetas.infraestructure.Persistence.DomainModel.Config
                        .WithMany()
                        .HasForeignKey(x => x.Unidad.Id)
                        .OnDelete(DeleteBehavior.Restrict);
-
           
+
+
         }
     }
 }
